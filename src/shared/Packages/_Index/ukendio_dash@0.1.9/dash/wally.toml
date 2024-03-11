@@ -1,0 +1,8 @@
+[package]
+name = "ukendio/dash"
+version = "0.1.9"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+author = "hcollins"
+
+[dependencies]

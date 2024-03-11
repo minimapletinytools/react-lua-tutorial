@@ -1,0 +1,10 @@
+[package]
+name = "user/react-lua-tutorial-and-storybook"
+version = "0.1.0"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+
+[dependencies]
+react = "jsdotlua/react@17.1.0"
+react-roblox = "jsdotlua/react-roblox@17.1.0"
+dash = "ukendio/dash@0.1.9"
