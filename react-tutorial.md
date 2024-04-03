@@ -24,11 +24,11 @@ TODO link react-lua docs (maybe just link the jsdotlua mirror ones...)
 
 ### Installing the react-lua module in your Roblox project
 
-If you are using Rojo and the [Wally](https://wally.run/) package management library <TODO link to other experts article>, install the [react-lua](https://wally.run/package/jsdotlua/react?version=17.1.0) and the [react-roblox](https://wally.run/package/jsdotlua/react-roblox) package. This is the recommended way to install React.
+If you are using Rojo and the Wally package management library <TODO link to other experts article>, react-lua is available on [Wally](https://wally.run/package/jsdotlua/react?version=17.1.0) This is the recommended way to install React.
 
 You can download an .rbxm file that can be imported into an existing project [here](https://github.com/jsdotlua/react-lua/releases/tag/v17.1.0) 
 
-Please note the where the react-lua files have been installed so that you can reference them in your project
+In both cases, react-lua will be added to your ReplicatedStorage folder
 
 TODO screenshot
 
@@ -39,7 +39,7 @@ Typical UI development in Roblox usually entails building a tree of [GUIObjects]
 TODO screenshot
 
 
-How you installed the react-lua packages earlier will determine where the ModuleScripts are installed. If you installed using the rbxm file, you can require the ModuleScripts as so:
+If you followed the installation steps above, you should be able to import the React module script:
 
 ```
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -47,16 +47,30 @@ local React = require(ReplicatedStorage.React.React)
 local ReactRoblox = require(ReplicatedStorage.React.ReactRoblox)
 ```
 
-If you used Wally, the path will depend on where you put your wally.toml file.
-
 First let's define a very basic UI element to test that everything works
 
 ```
-local function MyCuteTestFrame()
-TODO
+local function MyCuteTestFrame() 
+	return React.createElement("Frame", 
+    {
+		Size = UDim2.new(1,0,1,0),
+		BackgroundColor3 = Color3.fromRGB(193,179,142)
+	}, 
+    {
+		React.createElement("UICorner", {
+			CornerRadius = UDim.new(0,30)
+		}),
+	})
 end
-
 ```
+
+All UI creation happens through the `React.createElement(element, properties, chlidren)` function
+
+- The first argument is either a React node or a GUIObject that the node represents 
+  - In this case, it is the [Frame](https://create.roblox.com/docs/reference/engine/classes/Frame) GUIObject.
+- The second argument is a list of *properties* that modify the appearance or behavior of the GUIObject.
+- The final argument is a list of children nodes. The hierarchy here will match the workspace hierarchy.
+  - In this case a [UICorner](https://create.roblox.com/docs/reference/engine/classes/UICorner) which makes the `Frame` look more cute.
 
 To actually render the UI element, we need to "mount" the react "component tree"
 
@@ -66,17 +80,17 @@ local root = ReactRoblox.createRoot(handle)
 root:render(React.createElement(MyCuteTestFrame, {}, {}))
 ```
 
-Hit "Play" to see that everything works as expected
+Hit "Play" to see that everything works as expected.
 
-TODO screenshot
+Note that `root:render` takes a React element to render. In this case, we pass the user defined functional component `MyCuteTestFrame` that we just defined!
+
+![](pics/mycutetestframe.png)
+
 
 
 > **NOTE** What's happening?
 > just like react.js, react-lua internally stores a "tree" representing your UI
 > `React.createElement("Frame", {...}, {...})` defines a node in the tree
-> The first argument in this case is the GUIObject that the node represents. It could also be user-defined react component or function.
-> The second argument is a list of *properties* that modify the appearance or behavior of the GUIObject
-> The final argument is a list of children nodes 
 >
 > Once the tree is defined, `MyCuteTestFrame` in the example above, we need to "mount" so that it will ultimately render a Roblox UI for us
 > When calling `root:render` with our component, react-lua will do the following things:

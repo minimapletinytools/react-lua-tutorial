@@ -15,7 +15,9 @@ end
 
 local function MyCuteTestFrame() 
 	return React.createElement("Frame", {
-		Size = UDim2.new(1,0,1,0),
+		Position = UDim2.new(0.5,0,0.5,0),
+		AnchorPoint = Vector2.new(0.5,0.5),
+		Size = UDim2.new(0,100,0,100),
 		BackgroundColor3 = Color3.fromRGB(193,179,142)
 	}, {
 		React.createElement("UICorner", {
