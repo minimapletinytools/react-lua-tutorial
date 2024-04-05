@@ -1,11 +1,16 @@
 # react-lua-tutorial-and-storybook
 
+This repo contains tutorial examples for using `react-lua` to write UI for your Roblox experiences. It should be an invaluable tool for anyone getting started with `react-lua` + Roblox.
 
-# Running Examples
+It is the companion code for [this article](TODO). Please read the article first!!
 
-If you just want to view the examples, you can open the place.rbxl in Roblox Studio.
+# Running Examples (simple)
 
-If you'd like to make changes to the files in this directory and see them reflected in Roblox Studio, you will need to setup [Rojo](https://rojo.space/). 
+This repo is setup using Rojo + Wally, however, you can still just open the place.rbxl in Roblox Studio to view the examples. Modify `StarterPlayer > StarterPlayerScripts > Client` (mapped from `src/client/init.client.lua`) to choose which example you want to run. 
+
+# Setting up Rojo + Wally
+
+Changes made within Roblox Studio ARE NOT reflected into this folder. If you'd like to make changes to the files in this directory and see them reflected in Roblox Studio, you will need to setup [Rojo](https://rojo.space/). 
 
 <details>
   <summary>Click for Rojo Usage Instructions</summary>
@@ -14,8 +19,33 @@ If you'd like to make changes to the files in this directory and see them reflec
 
 Hit "Play" to enter play test mode and run the examples.
 
-# Installing react-lua
+## Installing react-lua with Wally
 
-We use Wally to manage the `react-lua` library. It's already installed in this project, however, if you'd like to use it in your own project the follow the instructions below:
+We use Wally to manage the `react-lua` library. It's already installed in this project, however, if you'd like to use it in your own project the follow [wally installation instrucitons](https://wally.run/install). Then, add the following to your wally.toml file:
 
-TODO
+```
+[dependencies]
+react = "jsdotlua/react@17.1.0"
+react-roblox = "jsdotlua/react-roblox@17.1.0"
+```
+
+Finally run `wally install`.
+
+Note [https://github.com/jsdotlua](https://github.com/jsdotlua)] hosts publics mirrors of repos from [https://github.com/Roblox](https://github.com/Roblox), and in particular [https://github.com/Roblox/react-lua](https://github.com/Roblox/react-lua). Currently the Roblox hosted/maintained upstream repositories are not set up to allow collaboration. Hope for this to change in the future!
+
+
+# Contributing
+
+Feel free to open issues and submit PRs. I hope to build this repo out into a fully storybook of examples, not just tutorials!
+
+## Wishlist
+
+- A fully working example application. Make it cute!
+- A storybook
+  - Examples of each GUIObject and how each property affects their look
+  - Examples of showing how sizing and position works
+    - UDim2 Size/Position examples
+    - Anchor examples
+    - AutomaticSizing examples
+  - A custom plugin showcasing examples as a storybook 
+- Stylesheet examples (when they get released)

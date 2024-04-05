@@ -4,6 +4,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local React = require(ReplicatedStorage.Shared.Packages.react)
 local ReactRoblox = require(ReplicatedStorage.Shared.Packages:FindFirstChild("react-roblox"))
 local Dash = require(ReplicatedStorage.Shared.Packages.dash)
+local Tutorial = ReplicatedStorage.Shared.Tutorial
 local Players = game:GetService("Players")
 
 
@@ -13,22 +14,8 @@ local function nextLayoutOrder() : number
 	return layoutOrder_
 end
 
-local function MyCuteTestFrame() 
-	return React.createElement("Frame", {
-		Position = UDim2.new(0.5,0,0.5,0),
-		AnchorPoint = Vector2.new(0.5,0.5),
-		Size = UDim2.new(0,100,0,100),
-		BackgroundColor3 = Color3.fromRGB(193,179,142)
-	}, {
-		React.createElement("UICorner", {
-			CornerRadius = UDim.new(0,30)
-		}),
-	})
-end
-
-
 type ExamplePickerProps = {
-	tutorialPairs : {[string] : string} 
+	tutorialPairs : {[string] : React.React_Element} 
 }
 
 local ExamplePicker = function(props : ExamplePickerProps)
@@ -90,6 +77,13 @@ end
 
 
 
+local function runSingleExample(example : React.React_Element, props : any?)
+	-- initialize React for the local player
+	local handle = Instance.new("ScreenGui",Players.LocalPlayer.PlayerGui)
+	local root = ReactRoblox.createRoot(handle)
+
+	root:render(React.createElement(example, props or {}))
+end
 
 local function runExamplePicker() 
 	-- initialize React for the local player
@@ -97,9 +91,12 @@ local function runExamplePicker()
 	local root = ReactRoblox.createRoot(handle)
 
 	local tutorialPairs = {}
-	tutorialPairs["MyCuteTestFrame"] = React.createElement(MyCuteTestFrame, {})
+	tutorialPairs["MyCuteTestFrame"] = React.createElement(require(Tutorial.one_MyCuteTestFrame), {})
 
 	root:render(React.createElement(ExamplePicker, { tutorialPairs = tutorialPairs}))
 end
 
-return runExamplePicker
+return {
+	runSingelExample = runSingleExample,
+	runExamplePicker = runExamplePicker,
+}

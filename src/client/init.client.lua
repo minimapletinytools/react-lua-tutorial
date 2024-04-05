@@ -1,4 +1,40 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local runExamplePicker = require(ReplicatedStorage.Shared.Examples)
+local React = require(ReplicatedStorage.Shared.Packages.react)
+local ReactRoblox = require(ReplicatedStorage.Shared.Packages:FindFirstChild("react-roblox"))
+local Dash = require(ReplicatedStorage.Shared.Packages.dash)
+local Tutorial = require(ReplicatedStorage.Shared.Tutorial)
+local ExamplePicker = require(ReplicatedStorage.Shared.ExamplePicker)
+local Players = game:GetService("Players")
 
-runExamplePicker()
+local function runExample()
+    
+    print("initializing ScreenGui")
+    -- initialize React for the local player
+    local handle = Instance.new("ScreenGui",Players.LocalPlayer.PlayerGui)
+    local root = ReactRoblox.createRoot(handle)
+
+    print("running example!")
+    -- choose an example below by uncommenting the one you want
+    -- you can only run one example at once
+    --root:render(React.createElement(Tutorial.MyTestFrame, {}))
+    --root:render(React.createElement(Tutorial.MyCuteTestFrame, {}))
+    --root:render(React.createElement(Tutorial.MyMostCuteTestFrame, {}))
+    --root:render(React.createElement(Tutorial.MyCustomTextLabel, { Text = "I love Giraffes!" }))
+    --root:render(React.createElement(Tutorial.MyCustomFrameWithContents, {}))
+    --root:render(React.createElement(Tutorial.MyBasicButton, {}))
+    --root:render(React.createElement(Tutorial.MyColorfulScrollingFrame, {}))
+    --root:render(React.createElement(Tutorial.MyColorfulClickableSquare, {}))
+    --root:render(React.createElement(Tutorial.MyClickableButton, { OnClick = function(time: string) print("Clickaroo! It is " .. time) end }, {}))
+    --root:render(React.createElement(Tutorial.MyCounter, {}))
+    --root:render(React.createElement(Tutorial.MyBoringKeyboard, {}))
+    --root:render(React.createElement(Tutorial.MyQuackyKeyboard, {}))
+    root:render(React.createElement(Tutorial.UnderstandingUseEffectExample, {}))
+    --root:render(React.createElement(Tutorial.MyEggCounter, { numberEggsToCount = 9511245 }))
+end
+
+
+-- run the example!
+runExample()
+
+-- you can use the example picker to easily view all examples, however the code setup for the picker is a little more complicated
+--ExamplePicker.runExamplePicker()
