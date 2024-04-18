@@ -2,7 +2,7 @@
 
 This repo contains tutorial examples for using `react-lua` to write UI for your Roblox experiences. It should be an invaluable tool for anyone getting started with `react-lua` + Roblox.
 
-It is the companion code for [this article](TODO). Please read the article first!!
+It is the companion code for [this article](TODO WIP). Please read the article first!!
 
 # Running Examples (simple)
 
@@ -40,8 +40,10 @@ Feel free to open issues and submit PRs. I hope to build this repo out into a fu
 
 ## Wishlist
 
+- A simple end to end example of a cute game with a React UI
+- Make the current Tutorial examples a little more cute (but not too complicated!)
 - A fully working example application. Make it cute!
-- A storybook
+- A storybook (maybe a separate repo)
   - Examples of each GUIObject and how each property affects their look
   - Examples of showing how sizing and position works
     - UDim2 Size/Position examples

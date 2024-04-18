@@ -16,7 +16,7 @@ local function runExample()
     print("running example!")
     -- choose an example below by uncommenting the one you want
     -- you can only run one example at once
-    --root:render(React.createElement(Tutorial.MyTestFrame, {}))
+    root:render(React.createElement(Tutorial.MyTestFrame, {}))
     --root:render(React.createElement(Tutorial.MyCuteTestFrame, {}))
     --root:render(React.createElement(Tutorial.MyMostCuteTestFrame, {}))
     --root:render(React.createElement(Tutorial.MyCustomTextLabel, { Text = "I love Giraffes!" }))
@@ -26,11 +26,23 @@ local function runExample()
     --root:render(React.createElement(Tutorial.MyColorfulClickableSquare, {}))
     --root:render(React.createElement(Tutorial.MyClickableButton, { OnClick = function(time: string) print("Clickaroo! It is " .. time) end }, {}))
     --root:render(React.createElement(Tutorial.MyCounter, {}))
+    --root:render(React.createElement(Tutorial.MyClock, {}))
     --root:render(React.createElement(Tutorial.MyBoringKeyboard, {}))
     --root:render(React.createElement(Tutorial.MyQuackyKeyboard, {}))
-    root:render(React.createElement(Tutorial.UnderstandingUseEffectExample, {}))
+    --root:render(React.createElement(Tutorial.UnderstandingUseEffectExample, {}))
     --root:render(React.createElement(Tutorial.MyEggCounter, { numberEggsToCount = 9511245 }))
+    --root:render(React.createElement(Tutorial.BAD_MyInfiniteLoop, {}))
+    --root:render(React.createElement(Tutorial.BAD_MyBoopMachine, {}))
+    --root:render(React.createElement(Tutorial.MyBoopMachine, {}))
+    --root:render(React.createElement(Tutorial.MySillyClock, {}))
+    --root:render(React.createElement(Tutorial.ColorJumper, {}))
+    --root:render(React.createElement(Tutorial.MyToggleWoggle, {}))
+    --root:render(React.createElement(Tutorial.MyReallyReallyCuteFrame, { child = React.createElement(Tutorial.MyCustomTextLabel, { Text = "I love Giraffes!" })}))
+    --root:render(React.createElement(Tutorial.MyLayoutExample, {}))
+    
+    
 end
+
 
 
 -- run the example!
@@ -38,3 +50,5 @@ runExample()
 
 -- you can use the example picker to easily view all examples, however the code setup for the picker is a little more complicated
 --ExamplePicker.runExamplePicker()
+
+

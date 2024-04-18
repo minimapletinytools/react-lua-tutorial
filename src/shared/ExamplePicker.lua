@@ -1,5 +1,7 @@
 --!strict
 
+-- IGNORE, NOT COMPLETE, LOOKS TOO UGLY :( Maybe you can help finish this :D?
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local React = require(ReplicatedStorage.Shared.Packages.react)
 local ReactRoblox = require(ReplicatedStorage.Shared.Packages:FindFirstChild("react-roblox"))
