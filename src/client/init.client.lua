@@ -1,3 +1,5 @@
+-- this is the entry point for our tutorial
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local React = require(ReplicatedStorage.Shared.Packages.react)
 local ReactRoblox = require(ReplicatedStorage.Shared.Packages:FindFirstChild("react-roblox"))
@@ -14,8 +16,9 @@ local function runExample()
     local root = ReactRoblox.createRoot(handle)
 
     print("running example!")
+
     -- choose an example below by uncommenting the one you want
-    -- you can only run one example at once
+    -- you can only run one example at once (the last one you call will be the one that runs)
     root:render(React.createElement(Tutorial.MyTestFrame, {}))
     --root:render(React.createElement(Tutorial.MyCuteTestFrame, {}))
     --root:render(React.createElement(Tutorial.MyMostCuteTestFrame, {}))
@@ -35,11 +38,11 @@ local function runExample()
     --root:render(React.createElement(Tutorial.BAD_MyBoopMachine, {}))
     --root:render(React.createElement(Tutorial.MyBoopMachine, {}))
     --root:render(React.createElement(Tutorial.MySillyClock, {}))
+    --TW flashing colors 
     --root:render(React.createElement(Tutorial.ColorJumper, {}))
     --root:render(React.createElement(Tutorial.MyToggleWoggle, {}))
     --root:render(React.createElement(Tutorial.MyReallyReallyCuteFrame, { child = React.createElement(Tutorial.MyCustomTextLabel, { Text = "I love Giraffes!" })}))
     --root:render(React.createElement(Tutorial.MyLayoutExample, {}))
-    
     
 end
 
@@ -48,7 +51,7 @@ end
 -- run the example!
 runExample()
 
--- you can use the example picker to easily view all examples, however the code setup for the picker is a little more complicated
+-- OR you can use the example picker to easily view all examples, however the code setup for the picker is a little more complicated
 --ExamplePicker.runExamplePicker()
 
 
