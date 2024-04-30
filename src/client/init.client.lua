@@ -49,9 +49,9 @@ end
 
 
 -- run the example!
-runExample()
+--runExample()
 
 -- OR you can use the example picker to easily view all examples, however the code setup for the picker is a little more complicated
---ExamplePicker.runExamplePicker()
+ExamplePicker.runExamplePicker()
 
 

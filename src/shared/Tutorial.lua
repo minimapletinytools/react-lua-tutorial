@@ -70,7 +70,7 @@ local function MyBasicButton()
 		Size = UDim2.new(0,100,0,100),
 		BackgroundColor3 = Color3.fromRGB(0,255,0),
 		Text = "Click me!",
-		[React.Event.MouseButton1Click] = function()
+		[React.Event.Activated] = function()
 			print("You clicked me!")
 		end
 	})
@@ -129,7 +129,7 @@ local function MyClickableButton(props: MyClickableButtonProps)
 		Size = UDim2.new(0,100,0,100),
 		BackgroundColor3 = Color3.fromRGB(0,0,255),
 		Text = props.Text,
-		[React.Event.MouseButton1Click] = function()
+		[React.Event.Activated] = function()
 			props.OnClick(tostring(os.date("%x %X")))
 		end
 	})
