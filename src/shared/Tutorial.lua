@@ -350,13 +350,13 @@ end
 
 
 export type TextBoxWithSetterProps = {
-	innerRef: React.Ref<any>, -- not quite sure what the type is, TODO figure it out
+	setTextRef: React.Ref<any>,
 }
 
 local TextBoxWithSetter = function(props : TextBoxWithSetterProps)
 	local text, setText = React.useState("")
 	-- binds `setText` to a function to the ref that can be called from the parent component
-	React.useImperativeHandle(props.innerRef, function()
+	React.useImperativeHandle(props.setTextRef, function()
 		return {
 			setText = setText
 		}
@@ -396,7 +396,7 @@ local function MySillyClock()
 		end
 	end, {})
 	return React.createElement(TextBoxWithSetter, {
-		innerRef = ref
+		setTextRef = ref
 	})
 end
 
@@ -493,7 +493,7 @@ local function MyToggleWoggle()
 end
 
 export type MyReallyReallyCuteFrameProps = {
-	child: React.React_Element,
+	child: React.ReactElement,
 }
 
 local function MyReallyReallyCuteFrame(props: MyReallyReallyCuteFrameProps)
