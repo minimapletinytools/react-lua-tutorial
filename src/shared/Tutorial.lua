@@ -368,7 +368,7 @@ local TextBoxWithSetter = function(props : TextBoxWithSetterProps)
 end
 
 -- older version using `forwardRef`, not recommended, left as an example
--- to pass in the ref to `forwardRef`, you set the reserved prop `ref = ref` where `ref = React.createRef()` in the props
+-- to pass in the ref to `forwardRef`, you set the reserved prop `ref = ref` where `ref = React.useRef()` in the props
 local TextBoxWithSetterForwardRefVersion = React.forwardRef(function(props, ref)
 	local text, setText = React.useState("")
 	-- binds `setText` to a function to the ref that can be called from the parent component
@@ -386,7 +386,7 @@ end)
 -- same as MyClock except uses TextBoxWithSetter
 -- this is totally silly and you can see how it might be useful for more complex components
 local function MySillyClock()
-	local ref = React.createRef()
+	local ref = React.useRef()
 	React.useEffect(function()
 		local timer = game:GetService("RunService").Heartbeat:Connect(function()
 			ref.current.setText(os.date("%x %X"))
@@ -402,7 +402,7 @@ end
 
 local function ColorJumper()
 
-	local ref = React.createRef()
+	local ref = React.useRef()
 
 	React.useEffect(function()
 		local timer = game:GetService("RunService").Heartbeat:Connect(function()

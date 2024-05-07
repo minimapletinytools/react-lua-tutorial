@@ -1,50 +1,44 @@
 # React in Roblox
 
-This is an unpublished/unfinished copy of a soon to be published "experts article" on using React in Roblox. Enjoy.
+## What is React?
 
-## What is React
+[React-lua](https://github.com/Roblox/react-lua) is a Roblox-compatible Lua port of the well known [React](https://react.dev/) UI library that is widely used in web and mobile.
 
-[React-lua](https://github.com/Roblox/react-lua) is a Roblox compatible lua port of the well known [react.js](https://react.dev/) UI library used in web and mobile ubiquitously.
+React-lua is maintained by Roblox. Currently most studio plugins and the Roblox Universal App (the desktop console and mobile app where you browse for your favorite Roblox games) are all written in react-lua.
 
-React-lua is maintained by Roblox and currently several studio plugins and the Roblox universal app (the desktop console and mobile app where you browse for your favorite Roblox games are all written in react-lua.
+In addition, we also maintain many libraries that extend or support react-lua. These libraries, including react-lua, are transpiled from from their JavaScript counterparts using [js-to-lua](https://github.com/Roblox/js-to-lua).
 
-In addition, we also maintain many libraries that extend or support react-lua. These libraries are often [js-to-lua](https://github.com/Roblox/js-to-lua) transpiled ports of existing well known react.js libraries.
+### Why should I use React?
 
-### Why should I use React
+Roblox already has plenty of awesome [built-in tools](https://create.roblox.com/docs/ui) for building UIs for your experiences. If you're just starting out and your UI consists of just a few static buttons and dialogs, then sticking with just these tools is a great choice!! If you're wanting to apply more structure to the ever growing complexity of your UI or just looking to learn something new, consider trying out React! 
 
-Roblox already has plenty of awesome [first class native UI tools](https://create.roblox.com/docs/ui) for building UIs for your experiences. If you're just starting out and your UI consists of just a few static buttons and dialogs, then sticking with just these tools is a great choice!! If you're wanting to apply more structure to the ever growing complexity of your UI or just looking to learn something new, consider trying out react! 
-
-React is an industry standard for many web and mobile apps these days and modern react has never been easier to use. It will certainly be a top choice for any professional developer with prior web development experience.
+React is an industry standard for many web and mobile apps these days and modern React has never been easier to use. It will certainly be a top choice for any professional developer with prior web development experience.
 
 ### Who is this guide for?
 
-This guide is for experienced off-platform react devs looking to build UIs on Roblox and also for existing Roblox devs looking to up-level their UI/UX code. This guide assumes you are already familiar with building [UI in Roblox](https://create.roblox.com/docs/ui).
+This guide is for experienced off-platform React devs looking to build UIs on Roblox and also for existing Roblox devs looking to up-level their UI/UX code. This guide assumes you are already familiar with building [UI in Roblox](https://create.roblox.com/docs/ui).
 
-Since react-lua is a port of react, all react resources apply. This guide highlights the key differences and is also a complete guide for those unfamiliar with React. For further reading, we suggest diving into the [official react docs](https://react.dev/reference/react)). There are also docs for [react-lua](https://jsdotlua.github.io/react-lua/).
+Since react-lua is a port of React, all React resources apply. This guide highlights the key differences and is also a complete guide for those unfamiliar with React. For further reading, we suggest diving into the [official React docs](https://react.dev/reference/react). There are also docs for [react-lua](https://roblox.github.io/roact-alignment/api-reference/react/).
 
 ### Source Code
 
-Source code for all examples are available on github at [react-lua-tutorial-and-storybook](https://github.com/minimapletinytools/react-lua-tutorial-and-storybook). Note that examples in the repository are written in [Luau](https://create.roblox.com/docs/luau) and are fully compatible with untyped Lua code. Type annotations have been omitted from the examples here for simplicity. I still highly recommended that you leverage typed Luau for all your Roblox scripts!
+Source code for all examples are available on GitHub at [react-lua-tutorial](https://github.com/minimapletinytools/react-lua-tutorial). Note that examples in the repository are written in [Luau](https://create.roblox.com/docs/luau) and are fully compatible with untyped Lua code. Type annotations have been omitted from the examples here for simplicity. I still highly recommended that you leverage typed Luau for all your Roblox scripts!
 
 ## Getting Started
 
 ### Installing the react-lua module in your Roblox project
 
-If you are using Rojo and the Wally package management library <TODO link to other experts article>, react-lua is available on [Wally](https://wally.run/package/jsdotlua/react?version=17.1.0) This is the recommended way to install React.
+If you are using [Rojo and the Wally package management tool](https://create.roblox.com/docs/projects/external-tools), react-lua is available on [Wally](https://wally.run/package/jsdotlua/react?version=17.1.0). This is the recommended way to install React. Or, you can download an .rbxm file that can be imported into an existing project [here](https://github.com/jsdotlua/react-lua/tags). In either case, react-lua will be added to your [`ReplicatedStorage`](https://create.roblox.com/docs/reference/engine/classes/ReplicatedStorage) folder.
 
-You can download an .rbxm file that can be imported into an existing project [here](https://github.com/jsdotlua/react-lua/releases/tag/v17.1.0) 
-
-In either case, react-lua will be added to your ReplicatedStorage folder.
-
-![](screenshots/ReplicatedStorage.png)
+![ReplicatedStorage](screenshots/ReplicatedStorage.png)
 
 ### Setting up React
 
-Typical UI development in Roblox usually entails building a tree of [GUIObjects](https://create.roblox.com/docs/reference/engine/classes/GuiObject) inside the [StarterGui](https://create.roblox.com/docs/reference/engine/classes/StarterGui) service.  React-lua is an entirely code driven UI workflow so instead, we define a single entry point inside [StarterPlayer > StarterPlayerScripts](asses/StarterPlayerScripts)
+Typical UI development in Roblox usually entails building a tree of [`GUIObjects`](https://create.roblox.com/docs/reference/engine/classes/GuiObject) inside the [StarterGui](https://create.roblox.com/docs/reference/engine/classes/StarterGui) service.  React-lua is an entirely code driven UI workflow so instead, we define a single entry point inside [*StarterPlayer > StarterPlayerScripts*](asses/StarterPlayerScripts) where we will declare React code that will ultimately construct the tree.
 
-![](StarterPlayerScripts.png)
+![StarterPlayer > StarterPlayerScripts](StarterPlayerScripts.png)
 
-After following the installation steps above, you should be able to import the React module script. Note that the package names may have different casing depending on which installation method you chose.
+After following the installation steps above, you should be able to require the React [ModuleScript](https://create.roblox.com/docs/reference/engine/classes/ModuleScript) in your [LocalScripts](https://create.roblox.com/docs/reference/engine/classes/LocalScript) to build your UI with React. Note that the package names may have different casing depending on which installation method you chose.
 
 ```lua
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -64,7 +58,7 @@ local function MyTestFrame()
 end
 ```
 
-To actually render the UI element, we need to "mount" the react "component tree"
+To actually render the UI element, we need to "mount" the React "component tree."
 
 ```lua
 local handle = Instance.new("ScreenGui",Players.LocalPlayer.PlayerGui)
@@ -72,37 +66,37 @@ local root = ReactRoblox.createRoot(handle)
 root:render(React.createElement(MyTestFrame, {}, {}))
 ```
 
-Hit "Play" to see that everything works as expected!
+Hit **Play** to see that everything works as expected!
 
-![](screenshots/MyTestFrame.png)
+![MyTestFrame](screenshots/MyTestFrame.png)
 
 The `render` function is ultimately what converts your React tree into something you can see on screen. The `render` function call will be omitted in the rest of the exampes in this article.
 
 #### What's happening here?
 
-Just like react.js, react-lua internally stores a "tree" representing your UI.
+React-lua internally stores a "tree" representing your UI.
 `React.createElement("Frame", {...}, {...})` defines a node in the tree.
 
-- The first argument in this case is the GUIObject that the node represents. It could also be user-defined react component or function
-- The second argument is a list of *properties* that modify the appearance or behavior of the GUIObject
+- The first argument in this case is the `GUIObject` that the node represents. It could also be user-defined React component or function
+- The second argument is a list of *properties* that modify the appearance or behavior of the `GUIObject`
 - The final argument is a list of children nodes 
 
-Once the tree is defined, `MyTestFrame` in the example above, we need to "mount" so that it will ultimately render a Roblox UI for us. This means converting it into a GUIObject tree in the datamodel. When calling `root:render` with our component, react-lua will do the following things:
+Once the tree is defined, `MyTestFrame` in the example above, we need to "mount" so that it will ultimately render a Roblox UI for us. This means converting it into a `GUIObject` tree in the datamodel. When calling `root:render` with our component, react-lua will do the following things:
 
 - Construct or update it's internal representation of the UI tree.
 - Derive the state of each component in the tree.
-- Construct or update the matching Roblox GUIObject representation of the UI (rendering). You can see the tree in the explorer widget in the screenshot above.
+- Construct or update the matching Roblox `GUIObject` representation of the UI (rendering). You can see the tree in the explorer widget in the screenshot above.
 
-The flow is identical to the the [component-lifecycle](https://legacy.reactjs.org/docs/react-component.html) of react.
+This is identical to the [component-lifecycle](https://react.dev/reference/react/Component) of React.
 
 ### Styling
 
-React properties are matched to GUIObject styling properties by. For example, to create a crownflower blue 108x108 square in the center of the screen, we want to set the [Size](https://create.roblox.com/docs/reference/engine/classes/GuiObject#Size), [Position](https://create.roblox.com/docs/reference/engine/classes/GuiObject#Position), [AnchorPoint](https://create.roblox.com/docs/reference/engine/classes/GuiObject#AnchorPoint) and [BackgroundColor3](https://create.roblox.com/docs/reference/engine/classes/GuiObject#BackgroundColor3) property.
+React properties are matched to `GUIObject` styling properties by. For example, to create a cornflower blue 108x108 square in the center of the screen, we want to set the [`Size`](https://create.roblox.com/docs/reference/engine/classes/GuiObject#Size), [`Position`](https://create.roblox.com/docs/reference/engine/classes/GuiObject#Position), [`AnchorPoint`](https://create.roblox.com/docs/reference/engine/classes/GuiObject#AnchorPoint) and [`BackgroundColor3`](https://create.roblox.com/docs/reference/engine/classes/GuiObject#BackgroundColor3) property.
 
 
 ### Component Trees
 
-Of course you can't have a cute frame without rounded corners! The third argument in `React.createElement` is for child elements. These will be children both in the React tree and the represented datamodel tree. Since Roblox uses child objects like [UICorner]() to style they parent GUIObjects, we just need to instantiate a `UICorner` child element to round out the corners of the parent Frame! 
+Of course you can't have a cute frame without rounded corners! The third argument in `React.createElement` is for child elements. These will be children both in the React tree and the represented datamodel tree. Since Roblox uses child objects like [`UICorner`](https://create.roblox.com/docs/reference/engine/classes/UICorner) to style they parent `GUIObjects`, we just need to instantiate a `UICorner` child element to round out the corners of the parent Frame! 
 
 
 ```lua
@@ -122,7 +116,7 @@ end
 
 Building component _trees_ are a key concept of React so you should get comfortable with it!
 
-The React styling property always match the instance property name you are trying to set. Only styling related properties can be set this way. Please see the "Advanced Styling" section below for more examples!
+The React styling property always matches the instance property name you are trying to set. Only styling related properties can be set this way. Please see the "Advanced Styling" section below for more examples!
 
 ### Properties
 
@@ -145,7 +139,7 @@ Now you can instantiate your `MyCustomTextLabel` with whatever text you want!
 root:render(React.createElement(MyCustomTextLabel, { MyText = "I love Giraffes!" }, {}))
 ```
 
-![](screenshots/MyCustomTextLabel.png)
+![MyCustomTextLabel](screenshots/MyCustomTextLabel.png)
 
 ### Reusing Components
 
@@ -174,7 +168,7 @@ Note that we're using our own `MyCustomFrame` component inside the `MyCustomFram
 
 ### Interacting
 
-React can listen to events from the Roblox objects it represents.  For example, to do something when a button is activated, we want to listen to the [Activated](https://create.roblox.com/docs/reference/engine/classes/GuiButton#Activated) event.
+React can listen to events from the Roblox objects it represents. For example, to do something when a button is clicked, we can listen to the [`Activated`](https://create.roblox.com/docs/reference/engine/classes/GuiButton#Activated) event.
 
 ```lua
 local function MyBasicButton()
@@ -182,16 +176,16 @@ local function MyBasicButton()
 		Size = UDim2.new(0,100,0,100),
 		BackgroundColor3 = Color3.fromRGB(0,255,0),
 		Text = "Click me!",
-		[React.Event.MouseButton1Click] = function()
+		[React.Event.Activated] = function()
 			print("You clicked me!")
 		end
 	})
 end
 ```
 
-![](screenshots/MyBasicButton.png)
+![MyBasicButton](screenshots/MyBasicButton.png)
 
-[Property change events](https://create.roblox.com/docs/reference/engine/classes/Instance#GetPropertyChangedSignal) are handled separately with the `React.Change` key, for example to listen to changes in the [CanvasPosition](https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#CanvasPosition) property of a [ScrollingFrame](https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame):
+[Property change events](https://create.roblox.com/docs/reference/engine/classes/Instance#GetPropertyChangedSignal) are handled separately with the `React.Change` key. For example, to listen to changes in the [`CanvasPosition`](https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame#CanvasPosition) property of a [`ScrollingFrame`](https://create.roblox.com/docs/reference/engine/classes/ScrollingFrame):
 
 ```lua
 local function ColorfulScrollingFrame()
@@ -229,7 +223,7 @@ local function MyClickableButton(props)
 		Size = UDim2.new(0,100,0,100),
 		BackgroundColor3 = Color3.fromRGB(0,0,255),
 		Text = props.Text,
-		[React.Event.MouseButton1Click] = function()
+		[React.Event.Activated] = function()
 			props.OnClick(tostring(os.date("%x %X")))
 		end
 	})
@@ -255,23 +249,23 @@ root:render(React.createElement(SnackTime, {
 }, {}))
 ```
 
-If you need to update the properties, you can just call `root:render` again. To pull bring UI intercations back to your game, you will use events as outlined in the previous section. A common pattern is to pass in callback as a proprety which allows you to separate your UI code and your "side-effecting" game logic. We saw this in the `MyClickableButton` example, 
+If you need to update the properties, you can just call `root:render` again. To pull UI interactions back to your game, you will use events as outlined in the previous section. You can also pass in a callback as a property here which allows you to separate your UI code and your "side-effecting" game logic. We saw this in the `MyClickableButton` example.
 
 Using properties is just one option. Another option is fetching the data directly inside of a `useEffect` call or connecting to signals. We will learn more about this in the "Effects" section.
 
 ### Inspecting and Debugging your React GUI
 
-React ultimately renders a GUIObject tree in the Roblox [DataModel](https://create.roblox.com/docs/reference/engine/classes/DataModel). You can inspect this tree by finding it in the explorer widget. It will show up under `Players > [Local Player Name] > PlayerGui`. In the `MyCuteTestFrame` example, we can see react-lua has created a "Frame" instance for us and carried over all our desired styling properties.
+React ultimately renders a `GUIObject` tree in the Roblox [DataModel](https://create.roblox.com/docs/reference/engine/classes/DataModel). You can inspect this tree by finding it in the [Explorer window](https://create.roblox.com/docs/studio/explorer) under **Players > [Local Player Name] > PlayerGui**. In the `MyCuteTestFrame` example, we can see react-lua has created a [`Frame`](https://create.roblox.com/docs/reference/engine/classes/Frame) instance for us and carried over all our desired styling properties. `Frame` is the closest Roblox equivalent to a `div` element in web BTW :D.
 
-![](screenshots/ExplorerDebugging.png)
+![Debugging with Explorer](screenshots/ExplorerDebugging.png)
 
-You can also update this tree in the properties widget, however changes here are only for testing and will likely be overridden the next time react-lua rerenders its component tree.
+You can also update this tree in the properties widget. However changes here are only for testing and will likely be overridden the next time react-lua re-renders its component tree.
 
 ## 🌶️ Spicing things Up 🌶️
 
 ### State `useState`
 
-To build dynamic UIs, you will need components with states that change from user interaction. This can be accomplished with the [useState](https://react.dev/reference/react/useState) hook:
+To build dynamic UIs, you will need components with states that change from user interaction. This can be accomplished with the [`useState`](https://react.dev/reference/react/useState) hook:
 
 ```lua
 local function MyColorfulClickableSquare()
@@ -291,11 +285,11 @@ local function MyColorfulClickableSquare()
 end
 ```
 
-The `useState` function takes an initial value and returns the state value and a setter. The `color` state value is assigned to the `BackgroundColor3` property and we call `setColor` inside the `[React.Event.Activated]` event to set its value.
+The `useState` function takes an initial value and returns the state value and a setter. In this example, the `BackgroundColor3` property of `TextButton` is set to the `color` state variable, which is initialized to white. The second variable, `setColor`, is the function that we use to set change value of `color`, which is exactly what we do inside the [React.Event.Activated] event.
 
 React carefully manages its component state so you must set the state through the state setter function returned by `useState`. Just setting the `color` variable directly in the above example won't persist the state!
 
-Note, if you capture the state value in a lambda (say), it will become stale when the setter gets called. The state value is just a regular lua variable and will not automatically update after it's been captured. To fix this, you will need to capture it within hooks like `useMemo` or `useCallback` and add the state variable to the list of dependencies. See the "Understanding Dependencies" section below.
+Note, if you capture the state value in a lambda (say), it will become stale when the setter gets called. The state value is just a regular lua variable and will not automatically update after its been captured. To fix this, you will need to capture it within hooks like `useMemo` or `useCallback` and add the state variable to the list of dependencies. See the "Understanding Dependencies" section below.
 
 Ok, let's take it a step further and compose with `MyClickableButton` that we defined earlier.
 
@@ -329,7 +323,7 @@ end
 
 ### Effects `useEffect`
 
-Ultimately, your react-lua UI code will need to connect to the world outside of the react component tree. The `useEffect` hook allows your to run effectful code in a controlled way. The `useEffect` allows you to do just this.
+Ultimately, your react-lua UI code will need to connect to the world outside of the React component tree. The `useEffect` hook allows you to run effectful code in a controlled way.
 
 ```lua
 local function MyClock()
@@ -351,9 +345,9 @@ local function MyClock()
 end
 ```
 
-![](screenshots/MyClock.png)
+![MyClock](screenshots/MyClock.png)
 
-The function pass into `useEffect` will get run once (and only once) when the node first gets created in the react tree. Here we connect to the [`Heartbeat`](https://create.roblox.com/docs/reference/engine/classes/RunService#Heartbeat) event of [RunService](https://create.roblox.com/docs/reference/engine/classes/RunService) inside the `useEffect` hook to update `text` to the current time each frame. When we destroy this component (for example, if it's part of a UI dialog we just closed) we no longer want to be connected to this event. The method we pass into the `useEffect` hook allows you to optionally return a cleanup routine. So we return a function that calls the [`Disconnect`](https://create.roblox.com/docs/en-us/reference/engine/datatypes/RBXScriptConnection#Disconnect) method of the [`RBXScriptConnection`](https://create.roblox.com/docs/reference/engine/datatypes/RBXScriptConnection) object that is returned by the `Connect` method.
+The function pass into `useEffect` will get run once (and only once) when the node first gets created in the react tree. Here we connect to the [`Heartbeat`](https://create.roblox.com/docs/reference/engine/classes/RunService#Heartbeat) event of [`RunService`](https://create.roblox.com/docs/reference/engine/classes/RunService) inside the `useEffect` hook to update `text` to the current time each frame. When we destroy this component (for example, if it's part of a UI dialog we just closed) we no longer want to be connected to this event. The method we pass into the `useEffect` hook allows you to optionally return a cleanup routine. So we return a function that calls the [`Disconnect`](https://create.roblox.com/docs/en-us/reference/engine/datatypes/RBXScriptConnection#Disconnect) method of the [`RBXScriptConnection`](https://create.roblox.com/docs/reference/engine/datatypes/RBXScriptConnection) object that is returned by the `Connect` method.
 
 Another common event you might want to listen to is the [`InputEnded`](https://create.roblox.com/docs/reference/engine/classes/UserInputService#InputEnded) event of [`UserInputService`](https://create.roblox.com/docs/reference/engine/classes/UserInputService) which will allow you to capture keyboard input.
 
@@ -373,7 +367,7 @@ React.useEffect(function()
 	end, {}) -- empty dependency array means this effect only runs once
 ```
 
-Now you might ask, why do I need to wrap code around `useEffect`? React is a "declarative" UI model however it's implementation is "imperative". This means your code, which declares how your UI looks/behaves, may be exectude multiple times. The `useEffect` hook precisely allows us to execute "effectful" code within the declarative model.
+Now you might ask, why do I need to wrap code around `useEffect`? React is a "declarative" UI model but its implementation is "imperative". This means your code, which declares how your UI looks/behaves, may be executed multiple times and these executions may produce unpredictable "side-effects". The `useEffect` hook precisely allows us to execute "effectful" code predictably within the declarative model.
 
 
 ```lua
@@ -392,14 +386,14 @@ local function UnderstandingUseEffectExample()
 end
 ```
 
-If you run just this example, you'll see "I might get run a lot!" print twice. In more complex react trees, this may get run many many times. Everytime a property or state changes (for example `setFlavor` gets called), react will rerun the code for that component and all of its descendants. This is called a rerender. Each call to `React.createElement` declares a node in the component tree. On rerenders, any node in the tree that shares the same location and type from the last time the tree was rendered will be considered the "same" node in the tree allowing state to be persisted. In this case, `useEffect` only runs the first time the node gets created in the tree. 
+If you run just this example, you'll see "I might get run a lot!" print twice. In more complex react trees, this may get run many many times. Everytime a property or state changes (for example `setFlavor` gets called), React will rerun the code for that component and all of its descendants. This is called a rerender. Each call to `React.createElement` declares a node in the component tree. On re-renders, any node in the tree that shares the same location and type from the last time the tree was rendered will be considered the "same" node in the tree allowing state to be persisted. In this case, `useEffect` only runs the first time the node gets created in the tree. 
 
-Of course, sometimes, your effectful code might be dependent on other parts of your component (for example, fetching a URL that's passed in as a property). In the above example, we pass in `{}` as the second argument to `useEffect` indicating there are no dependencies to the effect thus ensuring the effect only gets run once. The next 2 sections will dive deeper into dependencies.
+Of course, sometimes, your effectful code might be dependent on other parts of your component (for example, fetching a URL that's passed in as a property). In the above example, we pass in `{}` as the second argument to `useEffect` indicating there are no dependencies to the effect thus ensuring the effect only gets run once. DO NOT FORGET TO ADD THE `{}`. The next 2 sections will dive deeper into dependencies.
 
 
 ### Memoization `useMemo`
 
-Whereas effects are intending for controled interactiions with the world outside of react, sometimes, we'd also like to control code execution for optimization reasons. Remember that your functional component code may get run (rendered) many more times than the number of instances of that component in your tree. We can use the `useMemo` hook to cache expensive computations so that they run only once. This technique is called [memoization](https://en.wikipedia.org/wiki/Memoization)
+Whereas effects are intended for controlled interactions with the world outside of React, sometimes, we'd also like to control code execution for optimization reasons. Remember that your functional component code may get run (rendered) many more times than the number of instances of that component in your tree. We can use the `useMemo` hook to cache expensive computations so that they run only once.
 
 ```lua
 local function MyEggCounter(props)
@@ -430,9 +424,9 @@ Superficially, `useMemo` will take a function, run it, and return the value that
 
 ### Understanding Dependencies
 
-While in most cases, you can and should just stick any values captured inside the function passed into `useMemo`, it's still important to understand what's going on here. When a node is rendered, react will store each of the dependencies in the dependency array. On each subsequent render, it will compare the values on the current render and the previous render. If these values are different, then the dependencies have "changed" and the computation or effect will be run again.
+While in most cases, you can and should just stick any values captured inside the function passed into `useMemo`, it's still important to understand what's going on here. When a node is rendered, React will store each of the dependencies in the dependency array. On each subsequent render, it will compare the values on the current render and the previous render. If these values are different, then the dependencies have "changed" and the computation or effect will be run again.
 
-Lua has both value types and reference types. In particular, tabels are reference types and modifying a table will not change the reference to the table. Thus the following does not work.
+Lua has both value types and reference types. In particular, tables are reference types and modifying a table will not change the reference to the table. Thus the following does not work.
 
 ```lua
 local function MyBoopMachine()
@@ -459,7 +453,7 @@ local function MyBoopMachine()
         BackgroundColor3 = Color3.fromRGB(255,255,0),
 		Text = "boop " .. whatToBoop,
 		[React.Event.Activated] = function() 
-			boops[whatToBoop] = true -- this will not update the `boops` reference, so `whatToBoop` will not be updated
+			boops[whatToBoop] = true -- this will not update the `boops` table reference, so `whatToBoop` will not be updated
 			setBoops(boops)	
 		end
     })
@@ -480,7 +474,7 @@ To fix this issue, we need to rebuild the table
 end
 ```
 
-Table operations like this are very common and often cumbersome to do manually. Instead, you can use the `join` function avaliable in many lua libraies including [Cryo](https://github.com/Roblox/cryo/blob/main/src/Dictionary/join.lua) and [Dash](https://github.com/Roblox/dash/blob/main/src/join.lua) (which are also available on wally).
+Table operations like this are very common and often cumbersome to do manually. Instead, you can use the `join` function avaliable in many lua libraies including [Cryo](https://github.com/Roblox/cryo/blob/main/src/Dictionary/join.lua) and [Dash](https://github.com/Roblox/dash/blob/main/src/join.lua) (which are also available on Wally).
 
 ```lua
 local boopCopy = join(boops, { [whatToBoop] = true })
@@ -509,13 +503,13 @@ Note that react can not tell that the state has not actually changed due to tabl
 
 ### References `useRef` 
 
-The `useRef` hook allows you to create "references" that can be assigned to anything you like in react compatible way. A common use case is to interact with child components. Functional components do not have class methods like the older style of class components. Instead, we can use the `useImperativeHandle` hook to bind a method to the functional component's state modifiers.
+The `useRef` hook allows you to create "references" that can be assigned to anything you like in a React-compatible way. A common use case is to interact with child components. Functional components do not have class methods like the older style of class components. Instead, we can use the `useImperativeHandle` hook to bind a method to the functional component's state modifiers.
 
 ```lua
 local TextBoxWithSetter = function(props)
 	local text, setText = React.useState("")
 	-- binds `setText` to a function to the ref that can be called from the parent component
-	React.useImperativeHandle(props.innerRef, function()
+	React.useImperativeHandle(props.setTextRef, function()
 		return {
 			setText = setText
 		}
@@ -529,7 +523,7 @@ end
 -- same as MyClock except uses TextBoxWithSetter
 -- this is totally silly and you can see how it might be useful for more complex components
 local function MySillyClock()
-	local ref = React.createRef()
+	local ref = React.useRef()
 	React.useEffect(function()
 		local timer = game:GetService("RunService").Heartbeat:Connect(function()
 			ref.current.setText(os.date("%x %X"))
@@ -539,17 +533,18 @@ local function MySillyClock()
 		end
 	end, {})
 	return React.createElement(TextBoxWithSetter, {
-		innerRef = ref
+		setTextRef = ref
 	})
 end
 ```
 
-This is a powerful tool and breaks the uni-directional data flow of the reactive UI paradigm which will make it harder to reason about your code. Accessing the underlying GUIObject that your react tree represents is especially discouraged but sometimes this is necessary to interact with its dynamic properties.
+This is a powerful tool and breaks the unidirectional data flow of the reactive UI paradigm which will make it harder to reason about your code. Accessing the underlying `GUIObject` that your React tree represents is especially discouraged but sometimes this is necessary to interact with its dynamic properties.
 
 ```lua
+-- TW flashing colors
 local function ColorJumper()
 
-	local ref = React.createRef()
+	local ref = React.useRef()
 	
 	React.useEffect(function()
 		local timer = game:GetService("RunService").Heartbeat:Connect(function()
@@ -583,11 +578,13 @@ local function ColorJumper()
 end
 ```
 
+In the example above, we use the *magical* `ref` reserved property 🪄. When React sees this property, it assigns the element being created itself to `ref` 🎩, which in this case it is the `ScrollingFrame` instance 🐰.
 
+<sup><sub>Some of you may be familiar with the `forwardRef` method which allows to capture this magical `ref` inside the code for the functional component being created (simply `props.ref` will not work). Don't ever use `forwardRef`. Instead, just pass in the ref as a property that is not named `ref` like we did in the first example.</sub></sup>
 
 ### More Hooks 🎣
 
-All hooks in react are avaliable in react-lua. Please see the [react docs](https://react.dev/reference/react/hooks) for more information.
+All [React hooks]((https://react.dev/reference/react/hooks)) are avaliable in react-lua. React-lua also has a few additional hooks which you can learn about in the [react-lua docs](https://roblox.github.io/roact-alignment/api-reference/react/#hooks).
 
 A common pattern is to define your own custom hooks. 
 
@@ -615,7 +612,7 @@ local function useToggleState(default: boolean): {
 end
 ```
 
-<sub>thanks [boyned](https://blog.boyned.com/articles/things-i-learned-using-react/) for the example above!</sub>
+<sup><sub>thanks [Kampfkarren](https://blog.boyned.com/articles/things-i-learned-using-react/) for the example above!</sub></sup>
 
 ### Advanced Styling
 
@@ -656,8 +653,7 @@ local function MyReallyReallyCuteFrame(props: MyReallyReallyCuteFrameProps)
 	})
 end
 ```
-
-![](screenshots/MyReallyReallyCuteFrame.png)
+![MyReallyReallyCuteFrame](screenshots/MyReallyReallyCuteFrame.png)
 
 Adding a `UIListLayout` will position all children in order based on their respective sizes. This is super useful for managing layout and it's common to have your UI tree composed of multiple `Frames` with `UIListLayouts`. 
 
@@ -698,7 +694,7 @@ Note, if you are using explicit non integer table keys, you will also need to se
 
 ## Class Components
 
-With the latest version of react, class components are discouraged. Functional components are largely simpler and easier to use and are sufficient 99.9% of the time.
+With the latest version of React, class components are discouraged. Functional components are largely simpler and easier to use and are sufficient 99.9% of the time.
 
 Class components may offer some advantages in certain situations. Since the lua does not support native classes, the syntax for declaring class components is as follows:
 
@@ -714,7 +710,7 @@ function MyComponent:componentDidMount()
 end
 ```
 
-Similar, if you want to declare a [PureComponent](https://react.dev/reference/react/PureComponent):
+Similarly, if you want to declare a [PureComponent](https://react.dev/reference/react/PureComponent):
 
 ```lua
 local MyPureComponent = React.PureComponent:extend("MyPureComponent")
@@ -722,22 +718,13 @@ local MyPureComponent = React.PureComponent:extend("MyPureComponent")
 
 ## Roact Migration
 
-Some of you may be familiar with [roact](https://roblox.github.io/roact/) which is an earlier manual port of the react programming paradigm. Roact is no longer being maintained and does not support functional components. For the most part, migrating is just a matter of replacing `require(...Roact)` with `require(...React)` will do the trick. See the [react-lua documentation for guidance](https://jsdotlua.github.io/react-lua/migrating-from-legacy/minimum-requirements/) for guidance on items that require more attention.
+Some of you may be familiar with [Roact](https://roblox.github.io/roact/) which is an earlier manual port of the react programming paradigm. Roact is no longer being maintained and does not support functional components. For the most part, migrating is just a matter of replacing `require(...Roact)` with `require(...React)`. See the [react-lua documentation for guidance](https://roblox.github.io/roact-alignment/migrating-from-1x/minimum-requirements/) for guidance on items that require more attention. Note that sometimes react-lua is still referred to as Roact (and indeed the repository is named roact-alignment). It's a nominal difference. Just make sure you aren't using the old Roact!!
 
 ## Contributing to react-lua
 
-[React-lua](https://github.com/Roblox/react-lua) is currently not accepting direct contributions to react-lua and its supporting libraries yet. This is primarily due to 2 reasons:
+[React-lua](https://github.com/Roblox/react-lua) is currently not accepting direct contributions. This is primarily due to 2 reasons:
 
-- React-lua attempts to closely follow the upstream react.js code and therefore we have strict contribution guidelines that we still need to define
-- Our internal CI/CD tools for lua development are not publicly available at this time and therefore changes can not be automatically verified.
+- React-lua attempts to closely follow the upstream React code and therefore there are strict contribution guidelines that still need to defined
+- Roblox's internal CI/CD tools for lua development are not publicly available at this time and therefore changes can not be automatically verified.
 
-This may change in the future as we hope to support a diverse and collaborative open source ecosystem around Roblox!!
-
-To learn more, see our experts article on Lua & Roblox Open Source Ecosystem
-
-## Future Topics
-
-As we make more of libraries and resources available, you'll have access to an increasingly powerful toolkit. We'll be covering the following topics in the near future:
-
-- react component libraries
-- writing unit tests
+This may change in the future. There is so much potential for a vibrant, diverse and collaborative open source ecosystem around Lua and Roblox!!
