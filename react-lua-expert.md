@@ -107,6 +107,8 @@ end
 
 ![MyCuteTestFrame](screenshots/MyCuteTestFrame.png)
 
+The React styling property always matches the instance property name you are trying to set. Only styling related properties can be set this way. Please see the "Advanced Styling" section below for more examples!
+
 ### Component Trees
 
 Of course you can't have a cute frame without rounded corners! The third argument in `React.createElement` is for child elements. These will be children both in the React tree and the represented datamodel tree. Since Roblox uses child objects like [`UICorner`](https://create.roblox.com/docs/reference/engine/classes/UICorner) to style they parent `GUIObjects`, we just need to instantiate a `UICorner` child element to round out the corners of the parent Frame! 
@@ -130,8 +132,6 @@ end
 ![MyMostCuteTestFrame](screenshots/MyMostCuteTestFrame.png)
 
 Building component _trees_ are a key concept of React so you should get comfortable with it!
-
-The React styling property always matches the instance property name you are trying to set. Only styling related properties can be set this way. Please see the "Advanced Styling" section below for more examples!
 
 ### Properties
 
@@ -733,7 +733,7 @@ local MyPureComponent = React.PureComponent:extend("MyPureComponent")
 
 ## Roact Migration
 
-Some of you may be familiar with [Roact](https://roblox.github.io/roact/) which is an earlier manual port of the react programming paradigm. Roact is no longer being maintained and does not support functional components. For the most part, migrating is just a matter of replacing `require(...Roact)` with `require(...React)`. See the [react-lua documentation for guidance](https://roblox.github.io/roact-alignment/migrating-from-1x/minimum-requirements/) for guidance on items that require more attention. Note that sometimes react-lua is still referred to as Roact (and indeed the repository is named roact-alignment). It's a nominal difference. Just make sure you aren't using the old Roact!!
+Some of you may be familiar with [Roact](https://roblox.github.io/roact/) which is an earlier manual port of the react programming paradigm. Roact is no longer being maintained and does not support functional components. For the most part, migrating is just a matter of replacing `require(...Roact)` with `require(...React)`. See the [react-lua documentation](https://roblox.github.io/roact-alignment/migrating-from-1x/minimum-requirements/) for guidance on items that require more attention. Note that sometimes react-lua is still referred to as Roact (and indeed the repository is named roact-alignment). It's a nominal difference. Just make sure you aren't using the old Roact!!
 
 ## Contributing to react-lua
 
