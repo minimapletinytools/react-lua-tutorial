@@ -19,9 +19,9 @@ local function runExample()
 
     -- choose an example below by uncommenting the one you want
     -- you can only run one example at once (the last one you call will be the one that runs)
-    root:render(React.createElement(Tutorial.MyTestFrame, {}))
+    --root:render(React.createElement(Tutorial.MyTestFrame, {}))
     --root:render(React.createElement(Tutorial.MyCuteTestFrame, {}))
-    --root:render(React.createElement(Tutorial.MyMostCuteTestFrame, {}))
+    root:render(React.createElement(Tutorial.MyMostCuteTestFrame, {}))
     --root:render(React.createElement(Tutorial.MyCustomTextLabel, { Text = "I love Giraffes!" }))
     --root:render(React.createElement(Tutorial.MyCustomFrameWithContents, {}))
     --root:render(React.createElement(Tutorial.MyBasicButton, {}))

@@ -11,8 +11,8 @@ local function MyCuteTestFrame()
 	return React.createElement("Frame", {
 		Position = UDim2.new(0.5,0,0.5,0),
 		AnchorPoint = Vector2.new(0.5,0.5),
-		Size = UDim2.new(0,100,0,100),
-		BackgroundColor3 = Color3.fromRGB(193,179,142)
+		Size = UDim2.new(0,108,0,108),
+		BackgroundColor3 = Color3.fromRGB(100,149,237)
 	})
 end
 

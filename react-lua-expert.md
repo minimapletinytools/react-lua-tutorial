@@ -94,6 +94,19 @@ This is identical to the [component-lifecycle](https://react.dev/reference/react
 React properties are matched to `GUIObject` styling properties by. For example, to create a cornflower blue 108x108 square in the center of the screen, we want to set the [`Size`](https://create.roblox.com/docs/reference/engine/classes/GuiObject#Size), [`Position`](https://create.roblox.com/docs/reference/engine/classes/GuiObject#Position), [`AnchorPoint`](https://create.roblox.com/docs/reference/engine/classes/GuiObject#AnchorPoint) and [`BackgroundColor3`](https://create.roblox.com/docs/reference/engine/classes/GuiObject#BackgroundColor3) property.
 
 
+```lua
+local function MyCuteTestFrame() 
+	return React.createElement("Frame", {
+		Position = UDim2.new(0.5,0,0.5,0),
+		AnchorPoint = Vector2.new(0.5,0.5),
+		Size = UDim2.new(0,108,0,108),
+		BackgroundColor3 = Color3.fromRGB(100,149,237)
+	})
+end
+```
+
+![MyCuteTestFrame](screenshots/MyCuteTestFrame.png)
+
 ### Component Trees
 
 Of course you can't have a cute frame without rounded corners! The third argument in `React.createElement` is for child elements. These will be children both in the React tree and the represented datamodel tree. Since Roblox uses child objects like [`UICorner`](https://create.roblox.com/docs/reference/engine/classes/UICorner) to style they parent `GUIObjects`, we just need to instantiate a `UICorner` child element to round out the corners of the parent Frame! 
@@ -113,6 +126,8 @@ local function MyMostCuteTestFrame()
 	})
 end
 ```
+
+![MyMostCuteTestFrame](screenshots/MyMostCuteTestFrame.png)
 
 Building component _trees_ are a key concept of React so you should get comfortable with it!
 
