@@ -40,7 +40,7 @@ Feel free to open issues and submit PRs. I hope to expand this repo beyond just 
 
 ## Wishlist
 
-- A simple end to end example of a cute game with a React UI
 - Make the current Tutorial examples a little more cute (but not too complicated!)
-- A fully working example application. Make it cute!
+- Make the screenshots in react-lua-expert.md look nicer
+- A fully working end to end example application/game. Make it cute!
 - Stylesheet examples (when they get released)
