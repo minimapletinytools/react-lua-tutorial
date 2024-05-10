@@ -1,3 +1,5 @@
+--!strict
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local React = require(ReplicatedStorage.Shared.Packages.react)
 
@@ -549,6 +551,22 @@ local function MyLayoutExample()
 	})
 end
 
+export type MyTypedComponentProps = {
+	content: string, -- required
+	fontSize: number? -- optional!
+}
+
+local function MyTypedComponent(props: MyTypedComponentProps) 
+	local newFontSize = props.fontSize or 24
+	local newContent = "the following content " .. props.content .. " is size " .. tostring(newFontSize)
+	return React.createElement("TextLabel", {
+		Size = UDim2.new(0,100,0,100),
+		BackgroundColor3 = Color3.fromRGB(255,194,132),
+		Text = newContent,
+		TextSize = newFontSize,
+	})
+end
+
 return {
 	MyTestFrame = MyTestFrame,
 	MyCuteTestFrame = MyCuteTestFrame,
@@ -574,4 +592,5 @@ return {
 	MyToggleWoggle = MyToggleWoggle,
 	MyReallyReallyCuteFrame = MyReallyReallyCuteFrame,
 	MyLayoutExample = MyLayoutExample,
+	MyTypedComponent = MyTypedComponent,
 }

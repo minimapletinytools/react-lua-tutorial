@@ -707,6 +707,36 @@ end
 
 Note, if you are using explicit non integer table keys, you will also need to set the [`LayoutOrder`](https://create.roblox.com/docs/reference/engine/classes/GuiObject#LayoutOrder) property.
 
+## Typing your Props
+
+When you're [writing Lua scripts](https://create.roblox.com/docs/luau) in Roblox, you're actually writing [Luau](https://luau-lang.org/)! Luau is a superset of the Lua language that Roblox develops and maintains. Luau adds [strict types](https://luau-lang.org/typecheck) to Lua which can really improve the safety and legibility of your code! To enable strict type checking, just add `--!strict` at the top of your scripts! 
+
+The entirety of react-lua is written in strictly typed Luau. You can and should use types in your own component props. In many of the above examples, we pass a nebulous `props` argument to the fuctional components we defined. We can add types to declare what we expect these props to be.
+
+```lua
+export type MyTypedComponentProps = {
+	content: string, -- required
+	fontSize: number? -- optional!
+}
+
+local function MyTypedComponent(props: MyTypedComponentProps) 
+	local newFontSize = props.fontSize or 24
+	local newContent = "the following content " .. props.content .. " is size " .. tostring(newFontSize)
+	return React.createElement("TextLabel", {
+		Size = UDim2.new(0,100,0,100),
+		BackgroundColor3 = Color3.fromRGB(255,194,132),
+		Text = newContent,
+		TextSize = newFontSize,
+	})
+end
+```
+
+If we had, for example, forgotten to give a defaut value to the optional `fontSize` before using it, we would have gotten an error!
+
+![Type Error Example](screenshots/TypeError.png)
+
+A full tutorial on how to adopt Luau strict type checking is out of scope of this article.
+
 ## Class Components
 
 With the latest version of React, class components are discouraged. Functional components are largely simpler and easier to use and are sufficient 99.9% of the time.

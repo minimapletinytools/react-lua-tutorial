@@ -1,3 +1,4 @@
+--!strict
 -- this is the entry point for our tutorial
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -19,9 +20,9 @@ local function runExample()
 
     -- choose an example below by uncommenting the one you want
     -- you can only run one example at once (the last one you call will be the one that runs)
-    --root:render(React.createElement(Tutorial.MyTestFrame, {}))
+    root:render(React.createElement(Tutorial.MyTestFrame, {}))
     --root:render(React.createElement(Tutorial.MyCuteTestFrame, {}))
-    root:render(React.createElement(Tutorial.MyMostCuteTestFrame, {}))
+    --root:render(React.createElement(Tutorial.MyMostCuteTestFrame, {}))
     --root:render(React.createElement(Tutorial.MyCustomTextLabel, { Text = "I love Giraffes!" }))
     --root:render(React.createElement(Tutorial.MyCustomFrameWithContents, {}))
     --root:render(React.createElement(Tutorial.MyBasicButton, {}))
@@ -43,6 +44,7 @@ local function runExample()
     --root:render(React.createElement(Tutorial.MyToggleWoggle, {}))
     --root:render(React.createElement(Tutorial.MyReallyReallyCuteFrame, { child = React.createElement(Tutorial.MyCustomTextLabel, { Text = "I love Giraffes!" })}))
     --root:render(React.createElement(Tutorial.MyLayoutExample, {}))
+    --root:render(React.createElement(Tutorial.MyTypedComponent, { content = "I'm type safe", fontSize = 50 }))
     
 end
 

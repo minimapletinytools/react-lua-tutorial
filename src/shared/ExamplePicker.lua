@@ -123,6 +123,7 @@ local function runExamplePicker()
 	tutorialPairs["MyToggleWoggle"] = React.createElement(Tutorial.MyToggleWoggle, {})
 	tutorialPairs["MyReallyReallyCuteFrame"] = React.createElement(Tutorial.MyReallyReallyCuteFrame, { child = React.createElement(Tutorial.MyCustomTextLabel, { Text = "I love Giraffes!" })})
 	tutorialPairs["MyLayoutExample"] = React.createElement(Tutorial.MyLayoutExample, {})
+	tutorialPairs["MyTypedComponent"] = React.createElement(Tutorial.MyTypedComponent, { content = "I'm type safe", fontSize = 50 })
 
 	root:render(React.createElement(ExamplePicker, { tutorialPairs = tutorialPairs}))
 end
