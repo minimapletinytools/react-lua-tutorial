@@ -737,9 +737,9 @@ Some of you may be familiar with [Roact](https://roblox.github.io/roact/) which 
 
 ## Contributing to react-lua
 
-[React-lua](https://github.com/Roblox/react-lua) is currently not accepting direct contributions. This is primarily due to 2 reasons:
+[JS.Lua](https://github.com/jsdotlua) hosts the [community maintained fork of react-lua](https://github.com/jsdotlua/react-lua) and is also the source from which the React Wally packages are built from. You may open issues and pull requests here. This is forked from the Roblox maintained [React-lua](https://github.com/Roblox/react-lua) repo which is currently not accepting community contributions. This is primarily due to 2 reasons:
 
 - React-lua attempts to closely follow the upstream React code and therefore there are strict contribution guidelines that still need to defined
 - Roblox's internal CI/CD tools for lua development are not publicly available at this time and therefore changes can not be automatically verified.
 
-This may change in the future. There is so much potential for a vibrant, diverse and collaborative open source ecosystem around Lua and Roblox!!
+In there future, things may change and there may be more collaboration and coherency here, but what we have right now is what we have. There is so much potential for a vibrant, diverse and collaborative open source ecosystem around Lua and Roblox!!
