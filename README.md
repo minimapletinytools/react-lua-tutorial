@@ -2,7 +2,7 @@
 
 This repo contains tutorial examples for using `react-lua` to write UI for your Roblox experiences. It should be an invaluable tool for anyone getting started with `react-lua` + Roblox.
 
-It is the companion code for [this article](TODO). Please read the article first!! A copy of the article is also hosted and maintained in this repo.
+It is the companion code for [this article](https://devforum.roblox.com/t/how-to-react-roblox/2964543). A [copy of the article](https://github.com/minimapletinytools/react-lua-tutorial/blob/main/react-lua-expert.md) is also hosted and maintained in this repo.
 
 # Running Examples (simple)
 
